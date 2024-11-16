@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="oc,名设,lansi,约稿,人设">
+    <title>作品集网页</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: #333;
+        color: white;
+        padding: 1em 0;
+        text-align: center;
+      }
+      nav {
+        background-color: #ccc; /* 灰色背景 */
+        display: flex;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 1em 0;
+        align-items: center; /* 垂直居中 */
+      }
+      nav a {
+        color: #333; /* 初始颜色设为深灰色或黑色，与背景形成对比 */
+        text-decoration: none;
+        padding: 0.5em 1em;
+        transition: background-color 0.3s, color 0.3s; /* 添加过渡效果 */
+      }
+      nav a:hover {
+        background-color: #000; /* 鼠标浮动时变为黑色 */
+        color: #fff; /* 文字颜色变为白色 */
+      }
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2em 0;
+      }
+      .section {
+        padding: 2em;
+        margin-bottom: 2em;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        background-color: #f9f9f9;
+      }
+      .section:last-child {
+        margin-bottom: 0;
+      }
+      .section h2 {
+        margin-top: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>作品集</h1>
+    </header>
+    <nav>
+      <div class="left-nav">
+        <a href="#section1" class="nav-link">首页</a>
+        <a href="#section3" class="nav-link">项目1</a>
+        <a href="#section5" class="nav-link">关于我</a>
+      </div>
+      <div class="right-nav">
+        <a href="#section2" class="nav-link">简介</a>
+        <a href="#section4" class="nav-link">项目2</a>
+        <a href="#section6" class="nav-link">联系方式</a>
+      </div>
+    </nav>
+    <div class="container">
+      <section id="section1" class="section">
+        <h2>首页</h2>
+        <p>欢迎来到我的作品集网站。</p>
+      </section>
+      <section id="section2" class="section">
+        <h2>简介</h2>
+        <p>这是关于我的简介部分。</p>
+      </section>
+      <section id="section3" class="section">
+        <h2>项目1</h2>
+        <p>这是第一个项目的详细介绍。</p>
+      </section>
+      <section id="section4" class="section">
+        <h2>项目2</h2>
+        <p>这是第二个项目的详细介绍。</p>
+      </section>
+      <section id="section5" class="section">
+        <h2>关于我</h2>
+        <p>这是我的个人介绍。</p>
+      </section>
+      <section id="section6" class="section">
+        <h2>联系方式</h2>
+        <p>你可以通过以下方式联系我。</p>
+      </section>
+    </div>
+
+    <script>
+      // Optional: Smooth scrolling for the navigation links
+      document.querySelectorAll("nav a").forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+
+          // Optional: Add active class to the clicked link
+          const links = document.querySelectorAll("nav a");
+          links.forEach((link) => link.classList.remove("active"));
+          this.classList.add("active");
+
+          // Remove active class after a short delay
+          setTimeout(() => {
+            this.classList.remove("active");
+          }, 1000); // Adjust the delay as needed
+        });
+      });
+
+      // Optionally, you can highlight the current section link when the user scrolls
+      window.addEventListener("scroll", () => {
+        const sections = document.querySelectorAll(".section");
+        const links = document.querySelectorAll("nav a");
+
+        let current = "";
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - 60; // Adjust the -60 value to match your nav height
+
+          if (pageYOffset >= sectionTop) {
+            current = section.getAttribute("id");
+          }
+        });
+
+        links.forEach((link) => {
+          if (link.getAttribute("href").includes(current)) {
+            link.classList.add("active");
+          } else {
+            link.classList.remove("active");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
